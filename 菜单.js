@@ -55,3 +55,8 @@ db.menuM.update({"code":"0"},{$set:{"data":[]}})
     ,"paixu":13
     ,"dengji":"3"
 }
+
+{"title": "主页","icon": "layui-icon-home","list": [],"jump": "","paixu":"1",""}
+db.menuS.update({"parent":""},{$set:{"dengji":"1"}},{multi:true})
+db.menuS.update({"jump":"javascript:;"},{$set:{"parent":"","dengji":"1"})
+db.menuS.remove({"dengji":"1"})
