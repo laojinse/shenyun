@@ -33,6 +33,7 @@ db.menuM.update({"code":"0"},{$set:{"data":[]}})
     ,"list": [D,F,N]
     ,"jump": ""
     ,"paixu":1
+    ,"dengji":"1"
 }
 
 // 二级菜单所属字段
@@ -42,7 +43,8 @@ db.menuM.update({"code":"0"},{$set:{"data":[]}})
     ,"name": " "
     ,"list": [D,F,N]
     ,"jump": ""
-    ,"paixu":2
+    ,"paixu":23
+    ,"dengji":"2"
 }
 
 // 二级菜单所属字段
@@ -51,4 +53,5 @@ db.menuM.update({"code":"0"},{$set:{"data":[]}})
     ,"name": "laypage"
     ,"title": "分页"
     ,"paixu":13
+    ,"dengji":"3"
 }
