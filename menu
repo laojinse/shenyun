@@ -1,0 +1,70 @@
+<script>
+    var menuArry = [] ;
+    var dk =[]
+
+    function abc(){
+        $.ajax({
+            url: "http://localhost:3000/menu/menuList",  
+            // dataType:"json",
+            success: function(data){
+                 for(var i=0; i<data.length; i++){
+                     dk.push(data[i])
+                 }
+            }
+        });
+    }
+
+    function sucArry( dk, menuArry){
+        // 循环生成一级表单
+        for(var k=0; k<dk.length; k++){
+            // 判断
+            if(dk[k].dengji == 1){
+                // 如果没有父级 创建一级菜单 
+                menuArry.push(dk[k])
+            }
+        }
+        
+        // 先把2存出来,再把3添加到2中，最后把2 添加到1 中
+        var dj2Arry = []
+        
+        // 循环生成二级表单
+        for(var m=0; m<dk.length; m++){
+            // 如果是二级菜单
+            if(dk[m].dengji ==2 ){
+                // 存出二级菜单，然后循环该数组将三级菜单存入
+                dj2Arry.push(dk[m])
+            }
+        }
+
+        // 循环生成三级表单 并存入 二级菜单中
+        for(var j=0; j<dk.length; j++){
+            // 如果是三级菜单
+            if(dk[j].dengji ==3){
+                  // 向父级数组List中添加
+                for(var mm=0; mm<dj2Arry.length; mm++){
+                    // 判断，如果寻找id值相等的父级
+                    if(dj2Arry[mm]._id == dk[j].parent){
+                        // 填充相应的三级列表到 二级数组中
+                        dj2Arry[mm].list.push(dk[j])
+                    }
+                }
+            }
+        }
+
+        //最后一步 把2存到1中
+        for(var m=0; m<dj2Arry.length; m++){
+            // 向父级数组List中添加
+            for(var mm=0; mm<menuArry.length; mm++){
+                // 判断，如果寻找id值相等的父级
+                if(menuArry[mm]._id == dj2Arry[m].parent){
+                    menuArry[mm].list.push(dj2Arry[m])
+                }
+            }
+           
+        }
+
+
+        console.log(menuArry)
+    }
+
+</script>
